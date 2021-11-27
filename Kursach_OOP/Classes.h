@@ -76,7 +76,7 @@ public:
 	}
 	void object(RenderWindow& window) {
 		fig.setRadius(5);
-		fig.setFillColor(Color(255, 255, 0));
+		fig.setFillColor(Color(102, 255, 0));
 		fig.setPosition(cords);
 		window.draw(fig);
 	}
@@ -89,7 +89,7 @@ public:
 	{
 		direction = Vector2f(0, -1);
 		//direction = Vector2f(0.25, 1);
-		speed = 15;
+		speed = 8;
 		hitbox = Vector2f(10, 10);
 		cords = Vector2f(x, y);
 	}
@@ -107,7 +107,7 @@ public:
 	}
 	void object(RenderWindow& window) {
 		fig.setRadius(5);
-		fig.setFillColor(Color(0, 0, 255));
+		fig.setFillColor(Color(255, 220, 100));
 		fig.setPosition(cords);
 		window.draw(fig);
 	}
@@ -130,15 +130,19 @@ class Main_Сharacter :public Сharacter {
 public:
 	Main_Сharacter(float x = window_x / 2, float y = 3 * window_y / 4) {//с возможностью задать начальные координаты
 		hp = 3;
-		hitbox = Vector2f(50, 50);
+		hitbox = Vector2f(90, 90);
 		cords = Vector2f(x, y);//начальная координата
 		speed = 5;
 	}
 	void object(RenderWindow& window) {
-		fig.setRadius(25);
-		fig.setFillColor(Color(0, 255, 0));
-		fig.setPointCount(3);
+		Texture texture;
+		texture.loadFromFile("images/hero.png");
+		fig.setTexture(&texture);
+		fig.setRadius(45);
+		//fig.setFillColor(Color(0, 255, 0));
+		fig.setPointCount(6);
 		fig.setPosition(cords);
+		//fig.scale(1.0f, 0.5f);
 		window.draw(fig);
 	}
 	void shoot(Bullet* clip[])
@@ -177,6 +181,7 @@ public:
 		default:
 			break;
 		}
+
 	};
 	
 private:
@@ -225,19 +230,21 @@ public:
 };
 class Enemy_1 :public Enemy {
 public:
-	Enemy_1(float x= window_x / 2, float y = window_y / 2) {//с возможностью задать начальные координаты
-		hp = 1;
-		hitbox = Vector2f(50, 50);
+	Enemy_1(int HP,float x= window_x / 2, float y = window_y / 2) {//с возможностью задать начальные координаты
+		hp = HP;
+		hitbox = Vector2f(100, 100);
 		cords = Vector2f(x,y);//начальная координата
-		size_move_area = Vector2f(50, 150);
+		size_move_area = Vector2f(301, 301);
 		move_area_x = Vector2f(cords.x - size_move_area.x, cords.x + size_move_area.x);
 		move_area_y = Vector2f(cords.y - size_move_area.y, cords.y + size_move_area.y);
 		//cords = Vector2f(cords.x + 15, cords.y -10 );//смещение для задачи угла отражения
 	}
 	
 	void object(RenderWindow& window) {
-		fig.setRadius(25);
-		fig.setFillColor(Color(255,0,0));
+		Texture texture;
+		texture.loadFromFile("images/enemy1.png");
+		fig.setTexture(&texture);
+		fig.setRadius(50);
 		fig.setPointCount(4);
 		fig.setPosition(cords);
 		window.draw(fig);
@@ -247,18 +254,21 @@ private:
 };
 class Enemy_2 :public Enemy {
 public:
-	Enemy_2(float x = window_x / 2, float y = window_y / 2) {//с возможностью задать начальные координаты
-		hp = 2;
-		hitbox = Vector2f(50, 50);
+	Enemy_2(int HP,float x = window_x / 2, float y = window_y / 2) {//с возможностью задать начальные координаты
+		hp = HP;
+		hitbox = Vector2f(200, 200);
 		cords = Vector2f(x, y);//начальная координата
-		size_move_area = Vector2f(50, 150);
+		size_move_area = Vector2f(300, 300);
 		move_area_x = Vector2f(cords.x - size_move_area.x, cords.x + size_move_area.x);
 		move_area_y = Vector2f(cords.y - size_move_area.y, cords.y + size_move_area.y);
 		//cords = Vector2f(cords.x + 15, cords.y -10 );//смещение для задачи угла отражения
 	}
 	void object(RenderWindow& window) {
-		fig.setRadius(25);
-		fig.setFillColor(Color(255, 0, 0));
+		Texture texture;
+		texture.loadFromFile("images/enemy2.png");
+		fig.setTexture(&texture);
+		fig.setRadius(100);
+		//fig.setFillColor(Color(255, 0, 0));
 		fig.setPointCount(6);
 		fig.setPosition(cords);
 		window.draw(fig);
@@ -270,8 +280,6 @@ public:
 			r->set_direction(-0.25 + i * 0.25, -1);
 			clip[r->get_id()] = r;
 		}
-		
-
 	}
 	
 private:
@@ -279,18 +287,20 @@ private:
 };
 class Enemy_3 :public Enemy {
 public:
-	Enemy_3(float x = window_x / 2, float y = window_y / 2) {//с возможностью задать начальные координаты
-		hp = 3;
-		hitbox = Vector2f(50,50);
+	Enemy_3(int HP, float x = window_x / 2, float y = window_y / 2) {//с возможностью задать начальные координаты
+		hp = HP;
+		hitbox = Vector2f(100,100);
 		cords = Vector2f(x, y);//начальная координата
-		size_move_area = Vector2f(50, 150);
+		size_move_area = Vector2f(300, 300);
 		move_area_x = Vector2f(cords.x - size_move_area.x, cords.x + size_move_area.x);
 		move_area_y = Vector2f(cords.y - size_move_area.y, cords.y + size_move_area.y);
 		//cords = Vector2f(cords.x + 15, cords.y -10 );//смещение для задачи угла отражения
 	}
 	void object(RenderWindow& window) {
-		fig.setRadius(25);
-		fig.setFillColor(Color(255, 0, 0));
+		Texture texture;
+		texture.loadFromFile("images/enemy3.png");
+		fig.setTexture(&texture);
+		fig.setRadius(50);
 		fig.setPointCount(8);
 		fig.setPosition(cords);
 		window.draw(fig);
