@@ -137,9 +137,9 @@ int main()
 	Enemy* wr_4 = new Enemy_3(2+hard, 100, 150);
 	Enemy* wr_5 = new Enemy_3(2+hard, 400, 150);
 	Enemy* wr_6 = new Enemy_3(2+hard, 700, 150);
-	Enemy* wr_7 = new Enemy_3(2+hard, 150, 150);
+	Enemy* wr_7 = new Enemy_3(2+hard, 300, 150);
 	Enemy* wr_8 = new Enemy_2(3+hard, 500, 150);
-	Enemy* wr_9 = new Enemy_3(2+hard, 850, 150);
+	Enemy* wr_9 = new Enemy_3(2+hard, 700, 150);
 
 	ar[0] = wr;
 	ar[1] = wr_2;

@@ -210,12 +210,12 @@ public:
 		
 		float x = cords.x;
 		float y = cords.y;
-		if (x > move_area_x.y - hitbox.x || x < move_area_x.x || x<0 || x>window_x)
+		if (x > move_area_x.y - hitbox.x-2*speed || x < move_area_x.x+2*speed || x<2*speed || x>window_x - 2*speed)
 		{
 			dir_x *= -1;
 			dir_y *= pow(-1, rand() % 2);
 		};
-		if (y > move_area_y.y - hitbox.y || y < move_area_y.x || y<0 || y>window_y)
+		if (y > move_area_y.y - hitbox.y - 2*speed || y < move_area_y.x + 2*speed || y<2*speed || y>window_y -2*speed)
 		{
 			dir_y *= -1;
 			dir_x *= pow(-1, rand() % 2);
@@ -234,7 +234,7 @@ public:
 		hp = HP;
 		hitbox = Vector2f(100, 100);
 		cords = Vector2f(x,y);//начальная координата
-		size_move_area = Vector2f(301, 301);
+		size_move_area = Vector2f(300, 250);
 		move_area_x = Vector2f(cords.x - size_move_area.x, cords.x + size_move_area.x);
 		move_area_y = Vector2f(cords.y - size_move_area.y, cords.y + size_move_area.y);
 		//cords = Vector2f(cords.x + 15, cords.y -10 );//смещение для задачи угла отражения
@@ -258,7 +258,7 @@ public:
 		hp = HP;
 		hitbox = Vector2f(200, 200);
 		cords = Vector2f(x, y);//начальная координата
-		size_move_area = Vector2f(300, 300);
+		size_move_area = Vector2f(300, 250);
 		move_area_x = Vector2f(cords.x - size_move_area.x, cords.x + size_move_area.x);
 		move_area_y = Vector2f(cords.y - size_move_area.y, cords.y + size_move_area.y);
 		//cords = Vector2f(cords.x + 15, cords.y -10 );//смещение для задачи угла отражения
@@ -291,7 +291,7 @@ public:
 		hp = HP;
 		hitbox = Vector2f(100,100);
 		cords = Vector2f(x, y);//начальная координата
-		size_move_area = Vector2f(300, 300);
+		size_move_area = Vector2f(300, 250);
 		move_area_x = Vector2f(cords.x - size_move_area.x, cords.x + size_move_area.x);
 		move_area_y = Vector2f(cords.y - size_move_area.y, cords.y + size_move_area.y);
 		//cords = Vector2f(cords.x + 15, cords.y -10 );//смещение для задачи угла отражения
