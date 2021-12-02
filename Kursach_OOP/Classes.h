@@ -191,7 +191,9 @@ class Enemy : public Сharacter {
 private:
 	float dir_x;
 	float dir_y;
+	
 protected:
+	int exp;//кол-во очков за врага
 	Vector2f size_move_area;//размер области движения
 	Vector2f move_area_x;//координаты области движения по х(мин,макс)
 	Vector2f move_area_y;//координаты области движения по y (мин,макс)
@@ -224,14 +226,19 @@ public:
 		y += dir_y;
 		cords = Vector2f(x, y);
 	}
-	virtual void death() {
+	virtual int death() {
 		cords = Vector2f(-2000, 2000);//при смерти, отправляется на кладбище
+		return exp;
 	}
 };
 class Enemy_1 :public Enemy {
 public:
-	Enemy_1(int HP,float x= window_x / 2, float y = window_y / 2) {//с возможностью задать начальные координаты
+	Enemy_1(int exp_boost, int HP, float x = window_x / 2, float y = window_y / 2) {//с возможностью задать начальные координаты
 		hp = HP;
+		exp = 20;
+		if (exp_boost != 0) {
+			exp = exp * exp_boost;
+		}
 		hitbox = Vector2f(100, 100);
 		cords = Vector2f(x,y);//начальная координата
 		size_move_area = Vector2f(300, 250);
@@ -254,8 +261,12 @@ private:
 };
 class Enemy_2 :public Enemy {
 public:
-	Enemy_2(int HP,float x = window_x / 2, float y = window_y / 2) {//с возможностью задать начальные координаты
+	Enemy_2(int exp_boost,int HP,float x = window_x / 2, float y = window_y / 2) {//с возможностью задать начальные координаты
 		hp = HP;
+		exp = 50;
+		if (exp_boost != 0) {
+			exp = exp * exp_boost;
+		}
 		hitbox = Vector2f(200, 200);
 		cords = Vector2f(x, y);//начальная координата
 		size_move_area = Vector2f(300, 250);
@@ -287,8 +298,12 @@ private:
 };
 class Enemy_3 :public Enemy {
 public:
-	Enemy_3(int HP, float x = window_x / 2, float y = window_y / 2) {//с возможностью задать начальные координаты
+	Enemy_3(int exp_boost,int HP, float x = window_x / 2, float y = window_y / 2) {//с возможностью задать начальные координаты
 		hp = HP;
+		exp = 100;
+		if (exp_boost != 0) {
+			exp = exp * exp_boost;
+		}
 		hitbox = Vector2f(100,100);
 		cords = Vector2f(x, y);//начальная координата
 		size_move_area = Vector2f(300, 250);
