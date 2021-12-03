@@ -263,7 +263,7 @@ class Enemy_2 :public Enemy {
 public:
 	Enemy_2(int exp_boost,int HP,float x = window_x / 2, float y = window_y / 2) {//с возможностью задать начальные координаты
 		hp = HP;
-		exp = 50;
+		exp = 100;
 		if (exp_boost != 0) {
 			exp = exp * exp_boost;
 		}
@@ -300,7 +300,7 @@ class Enemy_3 :public Enemy {
 public:
 	Enemy_3(int exp_boost,int HP, float x = window_x / 2, float y = window_y / 2) {//с возможностью задать начальные координаты
 		hp = HP;
-		exp = 100;
+		exp = 50;
 		if (exp_boost != 0) {
 			exp = exp * exp_boost;
 		}

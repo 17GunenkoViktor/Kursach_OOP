@@ -244,9 +244,39 @@ int main()
 			}
 
 
-			if (GG->get_hp() == -30) {
+			if (GG->get_hp() == -5) {
 				window.close();
 			}
+
+			CircleShape image_heart;
+			Texture heart;
+			heart.loadFromFile("images/heart.png");
+			image_heart.setTexture(&heart);
+			image_heart.setRadius(20);
+			image_heart.setPointCount(6);
+			image_heart.setPosition(850,900);
+			window.draw(image_heart);
+
+			
+			Font font;
+			font.loadFromFile("Notalot60.ttf");
+			Text main_hp;
+			Text hs;
+			main_hp.setFont(font);
+			hs.setFont(font);
+			main_hp.setCharacterSize(30);
+			hs.setCharacterSize(25);
+			main_hp.setPosition(900, 900);
+			hs.setPosition(850, 50);
+			string a_hp = "HP:   ";
+			string b_hp = to_string(GG->get_hp());
+			string a_exp = "EXP:   ";
+			string b_exp = to_string(highscore);
+			main_hp.setString(a_hp + b_hp);
+			hs.setString(a_exp + b_exp);
+			window.draw(main_hp);
+			window.draw(hs);
+			
 
 			// Отрисовка окна	
 			window.display();
