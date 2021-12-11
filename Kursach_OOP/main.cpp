@@ -63,9 +63,7 @@ int menu (){
 int hard;
 int timehard;
 
-void delete_obj(Object* obj) {
-	
-}
+int score = 0;
 void chek_hit(Bullet*clip[],Enemy*enemies[],Main_Сharacter* GG,int count_enemy) {//проверка попаданий
 	
 	for (int i = 0; i < 50; i++){
@@ -82,7 +80,7 @@ void chek_hit(Bullet*clip[],Enemy*enemies[],Main_Сharacter* GG,int count_enemy)
 								clip[i]->hit();
 								enemies[j]->hit();
 								if (enemies[j]->get_hp() == 0) {
-									highscore+= enemies[j]->death();//запись счета
+									score+= enemies[j]->death();//запись счета
 								}
 							}
 						}
@@ -237,14 +235,17 @@ int main()
 
 			if (ar_3[0]->get_hp() == 0 && ar_3[1]->get_hp() == 0 && ar_3[2]->get_hp() == 0) {
 
-				ofstream record("highscore.txt", ios_base::trunc);
-				record << highscore;
-				record.close();
 				window.close();
 			}
 
+			ofstream record("highscore.txt", ios_base::trunc);
+			if (score > highscore) {
+				record << score;
+			}
+			record.close();
 
-			if (GG->get_hp() == -5) {
+			if (GG->get_hp() == 0) {
+				score = 0;
 				window.close();
 			}
 
@@ -271,7 +272,7 @@ int main()
 			string a_hp = "HP:   ";
 			string b_hp = to_string(GG->get_hp());
 			string a_exp = "EXP:   ";
-			string b_exp = to_string(highscore);
+			string b_exp = to_string(score);
 			main_hp.setString(a_hp + b_hp);
 			hs.setString(a_exp + b_exp);
 			window.draw(main_hp);
